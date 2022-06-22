@@ -28,7 +28,7 @@ A simple cloud file storage service that contains :
   
 ## Steps
   1. Clone this repository
-  2. Import the *.sql* inside `database` folder into your local mySQL database.
+  2. Import the *.sql* inside `sql` folder into your local mySQL database.
   3. Open 2 CMDs
   4. On the first CMD, type `nameko run service` to run the gateway.
   5. On the second CMD, type `nameko run storage_service` to run the file service.
