@@ -27,3 +27,8 @@ class StorageService:
     def download_file(self, uuid, currentUser):
         user = self.database.download_file(uuid, currentUser)
         return user
+    
+    @rpc
+    def get_all_file(self, currentUser):
+        user = self.database.get_all_file(currentUser)
+        return user
