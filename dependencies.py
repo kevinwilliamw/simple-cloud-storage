@@ -116,6 +116,24 @@ class DatabaseWrapper:
             cursor.close()
             return "No file matches this ID."
         
+    def get_all_file(self, currentUser):
+        cursor = self.connection.cursor(dictionary=True)
+        result = []
+        cursor.execute("""
+        SELECT * FROM storage
+        WHERE owner = %s;
+        """,(currentUser,))
+        for row in cursor.fetchall():
+            result.append({
+                'id': row['id'],
+                'content': row['content']
+            })
+            cursor.close()
+        if result:
+            return result
+        else:
+            return "No file uploaded by " + currentUser
+        
 class Database(DependencyProvider):
 
     connection_pool = None

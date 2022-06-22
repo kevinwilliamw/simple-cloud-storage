@@ -65,7 +65,17 @@ class GatewayService:
             data = request.json
             result = self.storage_access_rpc.download_file(data['id'], user_data[0]['username'])
             return json.dumps(result)
-            # return result
         else:
             response = Response("Log in required to download file! Please log in.")
+            return response
+        
+    @http('POST', '/getall')
+    def get_all_file(self, request):
+        cookies = request.cookies
+        if cookies:
+            user_data = self.session_provider.get_session(cookies['sessionID'])
+            result = self.storage_access_rpc.get_all_file(user_data[0]['username'])
+            return json.dumps(result)
+        else:
+            response = Response("Log in required to view all file! Please log in.")
             return response
